@@ -28,6 +28,7 @@ public class MainController : MonoBehaviour
         {
             var child = Instantiate(childControllers, childControllers.transform.parent);
             child.gameObject.SetActive(true);
+            child.UpdateTime(_time);
             child.UpdateEase(t);
             child.Run();
             _list.Add(child);
