@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using script;
 using UnityEngine;
 
 public class MainController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private List<ChildControllers> _list = new List<ChildControllers>();
+
+    [SerializeField] private ChildControllers childControllers;
+
     void Start()
     {
         
