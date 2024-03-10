@@ -16,6 +16,10 @@ namespace script
         {
             _ease = t;
         }
+        public void UpdateTime(float t)
+        {
+            _speed = t;
+        }
         public void Run()
         {
             images.transform.DOLocalMoveY(-104, _speed).SetEase(_ease).SetLoops(-1, LoopType.Yoyo);
