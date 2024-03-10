@@ -26,6 +26,12 @@ namespace script
             text.text = _ease.ToString();
         }
 
+        public void Coppy()
+        {
+            string str = text.text;
+            GUIUtility.systemCopyBuffer = str;
+        }
+
         private void Start()
         {
             Run();
