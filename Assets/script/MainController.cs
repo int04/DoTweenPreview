@@ -12,14 +12,14 @@ public class MainController : MonoBehaviour
 
     void Start()
     {
-        
+        UpdateChild();
     }
 
     public void UpdateChild()
     {
         foreach (Ease t in Enum.GetValues(typeof(Ease)))
         {
-            var child = Instantiate(childControllers, transform);
+            var child = Instantiate(childControllers, childControllers.transform.parent);
             child.UpdateEase(t);
             child.Run();
             _list.Add(child);
