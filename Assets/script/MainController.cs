@@ -22,15 +22,61 @@ public class MainController : MonoBehaviour
         UpdateChild();
     }
 
+    // <summary>
+    // because WebGL dont support Enum.GetValues(typeof(Ease)), so i have to create a list of Ease
+    // </summary>
+    private Ease[] _easeArray = new Ease[]
+    {
+        Ease.Unset,
+        Ease.Linear,
+        Ease.InSine,
+        Ease.OutSine,
+        Ease.InOutSine,
+        Ease.InQuad,
+        Ease.OutQuad,
+        Ease.InOutQuad,
+        Ease.InCubic,
+        Ease.OutCubic,
+        Ease.InOutCubic,
+        Ease.InQuart,
+        Ease.OutQuart,
+        Ease.InOutQuart,
+        Ease.InQuint,
+        Ease.OutQuint,
+        Ease.InOutQuint,
+        Ease.InExpo,
+        Ease.OutExpo,
+        Ease.InOutExpo,
+        Ease.InCirc,
+        Ease.OutCirc,
+        Ease.InOutCirc,
+        Ease.InElastic,
+        Ease.OutElastic,
+        Ease.InOutElastic,
+        Ease.InBack,
+        Ease.OutBack,
+        Ease.InOutBack,
+        Ease.InBounce,
+        Ease.OutBounce,
+        Ease.InOutBounce,
+        Ease.Flash,
+        Ease.InFlash,
+        Ease.OutFlash,
+        Ease.InOutFlash,
+        Ease.INTERNAL_Zero,
+        Ease.INTERNAL_Custom
+    };
+
     public void UpdateChild()
     {
-        foreach (Ease t in Enum.GetValues(typeof(Ease)))
+        //foreach(Ease t in  Enum.GetValues(typeof(Ease))) // using for edtior or app, dont support webGL :d
+        foreach (Ease t in _easeArray)
         {
             var child = Instantiate(childControllers, childControllers.transform.parent);
-            child.gameObject.SetActive(true);
             child.UpdateTime(_time);
             child.UpdateEase(t);
-            child.Run();
+            child.Run(t);
+            child.gameObject.SetActive(true);
             _list.Add(child);
         }
 

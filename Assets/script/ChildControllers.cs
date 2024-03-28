@@ -20,9 +20,14 @@ namespace script
         {
             _speed = t;
         }
-        public void Run()
+        public void Run(Ease t)
         {
-            images.transform.DOLocalMoveY(-104, _speed).SetEase(_ease).SetLoops(-1, LoopType.Yoyo);
+            if (images && images.GetComponent<RectTransform>())
+            {
+                var p = images.GetComponent<RectTransform>();
+                p.DOAnchorPosY(-104f, _speed).SetLoops(-1, LoopType.Yoyo).SetEase(t);
+                    //.SetEase(_ease).SetLoops(-1, LoopType.Yoyo);
+            }
             text.text = _ease.ToString();
         }
 
@@ -32,10 +37,6 @@ namespace script
             GUIUtility.systemCopyBuffer = str;
         }
 
-        private void Start()
-        {
-            Run();
-        }
 
     }
 }
